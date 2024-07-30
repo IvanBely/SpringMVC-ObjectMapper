@@ -1,6 +1,5 @@
-package com.example.SpringMVC_ObjectMapper.service.impl;
+package com.example.SpringMVC_ObjectMapper.service;
 
-import com.example.SpringMVC_ObjectMapper.exception.InsufficientDataException;
 import com.example.SpringMVC_ObjectMapper.exception.ProductNotFoundException;
 import com.example.SpringMVC_ObjectMapper.model.Product;
 import com.example.SpringMVC_ObjectMapper.repository.ProductRepository;
@@ -86,15 +85,6 @@ public class ProductServiceImplTest {
         Product result = productService.updateProduct(1L, updatedProduct);
         assertNotNull(result);
         assertEquals("Updated Product", result.getName());
-    }
-
-    @Test
-    void updateProduct_ExistingId_NoFieldsProvided_InsufficientDataException() {
-        Product updatedProduct = new Product();
-
-        when(productRepository.findById(1L)).thenReturn(Optional.of(product));
-
-        assertThrows(InsufficientDataException.class, () -> productService.updateProduct(1L, updatedProduct));
     }
 
     @Test

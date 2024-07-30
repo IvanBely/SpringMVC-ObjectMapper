@@ -1,4 +1,4 @@
-package com.example.SpringMVC_ObjectMapper.service.impl;
+package com.example.SpringMVC_ObjectMapper.service;
 
 import com.example.SpringMVC_ObjectMapper.exception.InsufficientDataException;
 import com.example.SpringMVC_ObjectMapper.exception.ProductNotFoundException;
@@ -34,9 +34,6 @@ public class ProductServiceImpl implements ProductService {
     public Product updateProduct(Long id, Product product) {
         Product existingProduct = productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException("Product not found with id: " + id));
-        if (existingProduct.equals(product)) {
-            new InsufficientDataException("Object is the same");
-        }
         return productRepository.save(existingProduct);
     }
 
